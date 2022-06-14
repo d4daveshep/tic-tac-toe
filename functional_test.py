@@ -21,7 +21,7 @@ def test_first_move():
     board.make_move(player1, move_choice)
 
     assert 8 == board.count_available_cells()
-    # assert move_choice not in board.available_cells()
+    assert move_choice not in board.available_cells()
 
 
 
