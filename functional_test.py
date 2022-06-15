@@ -1,23 +1,19 @@
+import Game as Game
 import pytest
 from board import Board
 from player import Player
+from game import Game
 
-
-
-def test_first_move():
-    player1 = Player("Dave", "X")
-
+def test_run_game():
     board = Board(3)
+    player1 = Player("Dave", "X")
+    player2 = Player("Alison", "O")
 
-    move_choice = "5"
-    board.make_move(player1, move_choice)
+    game = Game(board, player1, player2)
+    assert not game.is_game_over()
 
-    # assert 8 == board.count_available_cells()
-    # assert move_choice not in board.available_cells()
-
-
-
-
+    game.turn(player1, "5")
+    assert not game.is_game_over()
 
 
 

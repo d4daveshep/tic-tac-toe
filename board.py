@@ -41,14 +41,15 @@ class Board:
         col = self.cell_labels[label][1]
         return self.cells[row][col]
 
-    def count_available_cells(self):
-        return self.size * self.size
+    # def count_available_cells(self):
+    #     return self.size * self.size
 
-    def available_cell_labels(self):
+    def get_available_cell_labels(self):
         cell_list = []
         for i in range(self.size):
             for j in range(self.size):
-                cell_list.append(self.cells[i][j])
+                if self.cells[i][j] == " ":
+                    cell_list.append(self.get_cell_label(i, j))
         return cell_list
 
     def make_move(self, player, cell_label):

@@ -39,3 +39,16 @@ def test_cell_labels_are_correct():
     assert "5" == board.get_cell_label(1, 1)
     assert "7" == board.get_cell_label(2, 0)
     assert "9" == board.get_cell_label(2, 2)
+
+def test_available_cells():
+    board = Board(3)
+
+    available_cells = board.get_available_cell_labels()
+    assert 9 == len(available_cells)
+
+    board.cells[1][1] = "X"
+    available_cells = board.get_available_cell_labels()
+    assert 8 == len(available_cells)
+    assert "5" not in available_cells
+
+
