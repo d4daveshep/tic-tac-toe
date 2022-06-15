@@ -10,3 +10,6 @@ class Game:
 
     def is_game_over(self):
         return False
+
+    def turn(self, player1, cell_label):
+        pass
