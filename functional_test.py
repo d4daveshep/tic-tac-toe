@@ -1,4 +1,3 @@
-import Game as Game
 import pytest
 from board import Board
 from player import Player
@@ -12,7 +11,7 @@ def test_run_game():
     game = Game(board, player1, player2)
     assert not game.is_game_over()
 
-    game.turn(player1, "5")
+    game.turn(player1, "5")  # TODO
     assert not game.is_game_over()
 
 
