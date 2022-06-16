@@ -3,8 +3,8 @@ class Board:
     def __init__(self, size=3):
         self.size = size
 
-        #  create the 2D cell grid using list comprehension to fill with space character
-        self.cells = [[" " for i in range(self.size)] for j in range(self.size)]
+        #  create the cell grid and fill with space character
+        self.reset_to_empty()
 
         # create the dict for cell_labels
         self.cell_labels = {}
@@ -33,6 +33,11 @@ class Board:
                 if i == (self.size - 1 - j):
                     self.diag_labels[1].append(label)
 
+    def reset_to_empty(self):
+        #  create the 2D cell grid using list comprehension to fill with space character
+        self.cells = [[" " for i in range(self.size)] for j in range(self.size)]
+
+
     def get_cell_label(self, row, col):  # row, col are zero-based
         return str((row * self.size) + (col + 1))
 
@@ -57,10 +62,20 @@ class Board:
                     cell_list.append(self.get_cell_label(i, j))
         return cell_list
 
-    def make_move(self, player, cell_label):
-        None
+    def is_winner(self, mark):
+        for row in self.row_labels:
+            if self.check_row_col_diag_have_same_mark(row, mark):
+                return True
+        for col in self.col_labels:
+            if self.check_row_col_diag_have_same_mark(col, mark):
+                return True
+        for diag in self.diag_labels:
+            if self.check_row_col_diag_have_same_mark(diag, mark):
+                return True
+        return False
 
-
-size = 5
-
-None
+    def check_row_col_diag_have_same_mark(self, line, mark):
+        for label in line:
+            if self.get_cell_contents(label) != mark:
+                return False
+        return True
