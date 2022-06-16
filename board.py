@@ -37,7 +37,6 @@ class Board:
         #  create the 2D cell grid using list comprehension to fill with space character
         self.cells = [[" " for i in range(self.size)] for j in range(self.size)]
 
-
     def get_cell_label(self, row, col):  # row, col are zero-based
         return str((row * self.size) + (col + 1))
 

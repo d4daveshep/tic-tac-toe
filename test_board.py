@@ -40,6 +40,7 @@ def test_cell_labels_are_correct():
     assert "7" == board.get_cell_label(2, 0)
     assert "9" == board.get_cell_label(2, 2)
 
+
 def test_available_cells():
     board = Board(3)
 
@@ -51,11 +52,13 @@ def test_available_cells():
     assert 8 == len(available_cells)
     assert "5" not in available_cells
 
+
 def test_set_cell_contents():
     board = Board(3)
 
     board.set_cell_contents("5", "X")
     assert "X" == board.get_cell_contents("5")
+
 
 def test_is_winner():
     board = Board(3)
@@ -111,4 +114,3 @@ def test_is_winner():
     board.set_cell_contents("5", mark)
     board.set_cell_contents("7", mark)
     assert board.is_winner(mark)
-

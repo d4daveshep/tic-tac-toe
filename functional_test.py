@@ -3,6 +3,7 @@ from board import Board
 from player import Player
 from game import Game
 
+
 def test_run_game_player_wins():
     board = Board(3)
     player1 = Player("Dave", "X")
@@ -26,9 +27,3 @@ def test_run_game_player_wins():
         assert not game.is_game_over()
     else:
         assert False  # fail if we get to here
-
-
-
-
-
-

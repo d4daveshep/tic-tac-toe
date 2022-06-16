@@ -14,6 +14,7 @@ def test_turn():
     assert True == game.turn(player1, "5")  # valid turn
     assert False == game.turn(player2, "5")  # invalid turn since label "5" not empty
 
+
 def test_is_game_over():
     board = Board(3)
 

@@ -18,5 +18,3 @@ class Game:
             return True
         else:
             return False
-
-
