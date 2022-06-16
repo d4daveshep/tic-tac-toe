@@ -18,13 +18,14 @@ def test_run_game_player_wins():
         assert game.turn(player1, str(move))
         if move == 7:
             assert game.is_game_over()
+            break
         else:
             assert not game.is_game_over()
         move += 1
         assert game.turn(player2, str(move))
         assert not game.is_game_over()
-
-    assert False  # fail if we get to here
+    else:
+        assert False  # fail if we get to here
 
 
 

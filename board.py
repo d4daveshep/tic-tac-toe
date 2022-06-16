@@ -63,14 +63,9 @@ class Board:
         return cell_list
 
     def is_winner(self, mark):
-        for row in self.row_labels:
-            if self.check_row_col_diag_have_same_mark(row, mark):
-                return True
-        for col in self.col_labels:
-            if self.check_row_col_diag_have_same_mark(col, mark):
-                return True
-        for diag in self.diag_labels:
-            if self.check_row_col_diag_have_same_mark(diag, mark):
+        all_lines = self.row_labels + self.col_labels + self.diag_labels
+        for line in all_lines:
+            if self.check_row_col_diag_have_same_mark(line, mark):
                 return True
         return False
 
