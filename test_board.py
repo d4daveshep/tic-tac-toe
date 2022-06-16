@@ -56,3 +56,14 @@ def test_set_cell_contents():
 
     board.set_cell_contents("5", "X")
     assert "X" == board.get_cell_contents("5")
+
+def test_is_winner():
+    board = Board(3)
+    mark = "X"
+
+    # lets fast forward to some winning scenarios
+    board.set_cell_contents("1", mark)
+    board.set_cell_contents("2", mark)
+    board.set_cell_contents("3", mark)
+
+    assert board.is_winner(mark)

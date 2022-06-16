@@ -13,3 +13,13 @@ def test_turn():
 
     assert True == game.turn(player1, "5")  # valid turn
     assert False == game.turn(player2, "5")  # invalid turn since label "5" not empty
+
+def test_is_game_over():
+    board = Board(3)
+
+    # lets fast forward to some winning scenarios
+    board.set_cell_contents("1", "X")
+    board.set_cell_contents("2", "X")
+    board.set_cell_contents("3", "X")
+    game = Game(board, Player("Dave", "X"), Player("Alison", "O"))
+    assert game.is_game_over()

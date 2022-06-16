@@ -1,5 +1,4 @@
 import pytest
-from player import Player
 
 
 class Game:
@@ -10,7 +9,7 @@ class Game:
         self.player2 = player2
 
     def is_game_over(self):
-        return False
+        return self.board.is_winner("X")
 
     def turn(self, player1, cell_label):
         valid_labels = self.board.get_available_cell_labels()
