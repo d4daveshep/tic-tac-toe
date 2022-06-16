@@ -1,4 +1,5 @@
 import pytest
+from player import Player
 
 
 class Game:
@@ -12,4 +13,11 @@ class Game:
         return False
 
     def turn(self, player1, cell_label):
-        pass
+        valid_labels = self.board.get_available_cell_labels()
+        if cell_label in valid_labels:
+            self.board.set_cell_contents(cell_label, player1.mark)
+            return True
+        else:
+            return False
+
+

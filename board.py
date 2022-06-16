@@ -41,6 +41,11 @@ class Board:
         col = self.cell_labels[label][1]
         return self.cells[row][col]
 
+    def set_cell_contents(self, label, mark):
+        row = self.cell_labels[label][0]
+        col = self.cell_labels[label][1]
+        self.cells[row][col] = mark
+
     # def count_available_cells(self):
     #     return self.size * self.size
 

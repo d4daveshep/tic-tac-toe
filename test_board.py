@@ -51,4 +51,8 @@ def test_available_cells():
     assert 8 == len(available_cells)
     assert "5" not in available_cells
 
+def test_set_cell_contents():
+    board = Board(3)
 
+    board.set_cell_contents("5", "X")
+    assert "X" == board.get_cell_contents("5")
