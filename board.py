@@ -1,6 +1,19 @@
 class Board:
+    """
+    Implements a square board, implemented by a 2-D array of cells that contain a string either a space, X or O.
+    Each cell has a label, which is a digit string. E.g. "1" to "9" for a 3 x 3 grid starting from top left and
+    increasing row by row.
 
-    def __init__(self, size=3):
+    Methods are provided to map between cell labels and cell contents and row, column indexes.
+
+    Internally, the board also has list of row, column and diagonal labels to help with checking if a player has won
+    the game.
+
+    """
+
+    def __init__(self, size: int = 3):
+
+        assert size > 1
         self.size = size
 
         #  create the cell grid and fill with space character
@@ -37,15 +50,15 @@ class Board:
         #  create the 2D cell grid using list comprehension to fill with space character
         self.cells = [[" " for i in range(self.size)] for j in range(self.size)]
 
-    def get_cell_label(self, row, col):  # row, col are zero-based
+    def get_cell_label(self, row: int, col: int) -> str:  # row, col are zero-based
         return str((row * self.size) + (col + 1))
 
-    def get_cell_contents(self, label):
+    def get_cell_contents(self, label: str) -> str:
         row = self.cell_labels[label][0]
         col = self.cell_labels[label][1]
         return self.cells[row][col]
 
-    def set_cell_contents(self, label, mark):
+    def set_cell_contents(self, label: str, mark: str):
         row = self.cell_labels[label][0]
         col = self.cell_labels[label][1]
         self.cells[row][col] = mark
@@ -53,7 +66,7 @@ class Board:
     # def count_available_cells(self):
     #     return self.size * self.size
 
-    def get_available_cell_labels(self):
+    def get_available_cell_labels(self) -> list:
         cell_list = []
         for i in range(self.size):
             for j in range(self.size):
@@ -73,3 +86,20 @@ class Board:
             if self.get_cell_contents(label) != mark:
                 return False
         return True
+
+    def count_available_cells(self):
+        return len(self.get_available_cell_labels())
+
+    def display_board(self):
+        # The function prints the board's current status to the console
+
+        draw_divider = "+-------+-------+-------+"
+        draw_spacer = "|       |       |       |"
+        for i in range(self.size):
+            print(draw_divider)
+            print(draw_spacer)
+            for j in range(self.size):
+                print("|   ", self.cells[i][j], "   ", sep="", end="")
+            print("|")
+            print(draw_spacer)
+        print(draw_divider)

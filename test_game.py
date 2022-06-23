@@ -24,3 +24,4 @@ def test_is_game_over():
     board.set_cell_contents("3", "X")
     game = Game(board, Player("Dave", "X"), Player("Alison", "O"))
     assert game.is_game_over()
+

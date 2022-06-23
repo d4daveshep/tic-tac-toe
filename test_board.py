@@ -2,6 +2,18 @@ import pytest
 
 from board import Board
 
+def test_board_size_too_small():
+    try:
+        Board(1)
+        assert False
+    except AssertionError:
+        pass
+
+    try:
+        Board(2)
+    except AssertionError:
+        assert False
+
 
 def test_board_init():
     size = 3

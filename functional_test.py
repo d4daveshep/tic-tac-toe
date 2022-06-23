@@ -27,3 +27,31 @@ def test_run_game_player_wins():
         assert not game.is_game_over()
     else:
         assert False  # fail if we get to here
+
+def test_game_is_draw():
+    board = Board(3)
+    player1 = Player("Dave", "X")
+    player2 = Player("Alison", "O")
+
+    game = Game(board, player1, player2)
+    #
+    # XX0
+    # OOX
+    # XOX
+    moves = list("132465789")
+    #
+    print()
+    # board.display_board()
+    while True:
+        move = moves.pop(0)
+        game.turn(player1, move)
+        board.display_board()
+        if game.is_game_over():
+            break
+        move = moves.pop(0)
+        game.turn(player2, move)
+        board.display_board()
+        if game.is_game_over():
+            break
+    else:
+        assert False
