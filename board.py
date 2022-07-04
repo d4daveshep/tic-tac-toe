@@ -99,7 +99,10 @@ class Board:
             print(draw_divider)
             print(draw_spacer)
             for j in range(self.size):
-                print("|   ", self.cells[i][j], "   ", sep="", end="")
+                if self.cells[i][j] == " ":
+                    print("|   ", self.get_cell_label(i,j), "   ", sep="", end="")
+                else:
+                    print("|   ", self.cells[i][j], "   ", sep="", end="")
             print("|")
             print(draw_spacer)
         print(draw_divider)
