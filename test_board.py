@@ -2,6 +2,7 @@ import pytest
 
 from board import Board
 
+
 def test_board_size_too_small():
     try:
         Board(1)
@@ -44,6 +45,7 @@ def test_label_to_cell_mapping():
     assert " " == board.get_cell_contents("8")
     board.cells[2][1] = "O"
     assert "O" == board.get_cell_contents("8")
+
 
 def test_cell_labels_are_correct():
     board = Board(3)
@@ -142,6 +144,7 @@ def test_is_winner():
     assert board.is_winner(mark_X)
     assert not board.is_winner(mark_O)
 
+
 def test_is_full():
     board = Board(3)
     mark_X = "X"
@@ -160,3 +163,19 @@ def test_is_full():
         board.set_cell_contents(cell_label, mark_O)
     assert board.is_full()
 
+
+def test_get_row_col_numbers_for_label():
+    board = Board(3)
+
+    try:
+        board.get_row_col_numbers_for_label("d")
+        assert False
+    except ValueError:
+        assert True
+
+    assert board.get_row_col_numbers_for_label("1") == (0, 0)
+    assert board.get_row_col_numbers_for_label("2") == (0, 1)
+    assert board.get_row_col_numbers_for_label("4") == (1, 0)
+    assert board.get_row_col_numbers_for_label("5") == (1, 1)
+    assert board.get_row_col_numbers_for_label("8") == (2, 1)
+    assert board.get_row_col_numbers_for_label("9") == (2, 2)

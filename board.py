@@ -19,8 +19,6 @@ class Board:
         #  create the cell grid and fill with space character
         self.reset_to_empty()
 
-        # create the dict for cell_labels
-
         # create the lists of row, col and diag labels
         self.row_labels = []
         self.col_labels = []
