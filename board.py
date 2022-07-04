@@ -44,7 +44,7 @@ class Board:
 
     def reset_to_empty(self):
         #  (re)create the 2D cell grid using list comprehension and fill with space character
-        self.cells = [[" " for i in range(self.size)] for j in range(self.size)]
+        self.cells = [[" " for col in range(self.size)] for row in range(self.size)]
 
     def get_cell_label(self, row_num: int, col_num: int) -> str:
         """
@@ -74,9 +74,6 @@ class Board:
         row_num, col_num = self.get_row_col_numbers_for_label(label)
         self.cells[row_num][col_num] = mark
 
-    # def count_available_cells(self):
-    #     return self.size * self.size
-
     def get_available_cell_labels(self) -> list:
         cell_list = []
         for row_num, row in enumerate(self.cells):
@@ -86,6 +83,7 @@ class Board:
         return cell_list
 
     def is_winner(self, mark: str) -> bool:
+        # TODO: change this function to use the iterators for rol and col labels - see misc_stuff.py file
         all_lines = self.row_labels + self.col_labels + self.diag_labels
         for line in all_lines:
             if self.check_row_col_diag_have_same_mark(line, mark):
