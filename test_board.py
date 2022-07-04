@@ -74,55 +74,86 @@ def test_set_cell_contents():
 
 def test_is_winner():
     board = Board(3)
-    mark = "X"
+    mark_X = "X"
+    mark_O = "O"
 
-    # lets fast forward to some winning scenarios
+    assert not board.is_winner(mark_X)
+    assert not board.is_winner(mark_O)
+
+    # lets fast forward to some winning scenarios for X
     # rows
-    board.set_cell_contents("1", mark)
-    board.set_cell_contents("2", mark)
-    board.set_cell_contents("3", mark)
-    assert board.is_winner(mark)
+    board.set_cell_contents("1", mark_X)
+    board.set_cell_contents("2", mark_X)
+    board.set_cell_contents("3", mark_X)
+    assert board.is_winner(mark_X)
+    assert not board.is_winner(mark_O)
 
     board.reset_to_empty()
-    board.set_cell_contents("4", mark)
-    board.set_cell_contents("5", mark)
-    board.set_cell_contents("6", mark)
-    assert board.is_winner(mark)
+    board.set_cell_contents("4", mark_X)
+    board.set_cell_contents("5", mark_X)
+    board.set_cell_contents("6", mark_X)
+    assert board.is_winner(mark_X)
+    assert not board.is_winner(mark_O)
 
     board.reset_to_empty()
-    board.set_cell_contents("7", mark)
-    board.set_cell_contents("8", mark)
-    board.set_cell_contents("9", mark)
-    assert board.is_winner(mark)
+    board.set_cell_contents("7", mark_X)
+    board.set_cell_contents("8", mark_X)
+    board.set_cell_contents("9", mark_X)
+    assert board.is_winner(mark_X)
+    assert not board.is_winner(mark_O)
 
     # cols
     board.reset_to_empty()
-    board.set_cell_contents("1", mark)
-    board.set_cell_contents("4", mark)
-    board.set_cell_contents("7", mark)
-    assert board.is_winner(mark)
+    board.set_cell_contents("1", mark_X)
+    board.set_cell_contents("4", mark_X)
+    board.set_cell_contents("7", mark_X)
+    assert board.is_winner(mark_X)
+    assert not board.is_winner(mark_O)
 
     board.reset_to_empty()
-    board.set_cell_contents("2", mark)
-    board.set_cell_contents("5", mark)
-    board.set_cell_contents("8", mark)
-    assert board.is_winner(mark)
+    board.set_cell_contents("2", mark_X)
+    board.set_cell_contents("5", mark_X)
+    board.set_cell_contents("8", mark_X)
+    assert board.is_winner(mark_X)
+    assert not board.is_winner(mark_O)
 
     board.reset_to_empty()
-    board.set_cell_contents("3", mark)
-    board.set_cell_contents("6", mark)
-    board.set_cell_contents("9", mark)
-    assert board.is_winner(mark)
+    board.set_cell_contents("3", mark_X)
+    board.set_cell_contents("6", mark_X)
+    board.set_cell_contents("9", mark_X)
+    assert board.is_winner(mark_X)
+    assert not board.is_winner(mark_O)
 
     # diag
     board.reset_to_empty()
-    board.set_cell_contents("1", mark)
-    board.set_cell_contents("5", mark)
-    board.set_cell_contents("9", mark)
-    assert board.is_winner(mark)
+    board.set_cell_contents("1", mark_X)
+    board.set_cell_contents("5", mark_X)
+    board.set_cell_contents("9", mark_X)
+    assert board.is_winner(mark_X)
+    assert not board.is_winner(mark_O)
 
     board.reset_to_empty()
-    board.set_cell_contents("3", mark)
-    board.set_cell_contents("5", mark)
-    board.set_cell_contents("7", mark)
-    assert board.is_winner(mark)
+    board.set_cell_contents("3", mark_X)
+    board.set_cell_contents("5", mark_X)
+    board.set_cell_contents("7", mark_X)
+    assert board.is_winner(mark_X)
+    assert not board.is_winner(mark_O)
+
+def test_is_full():
+    board = Board(3)
+    mark_X = "X"
+    mark_O = "O"
+
+    # fill board with X
+    for cell_label in board.get_available_cell_labels():
+        assert not board.is_full()
+        board.set_cell_contents(cell_label, mark_X)
+    assert board.is_full()
+
+    board.reset_to_empty()
+    # fill board with O
+    for cell_label in board.get_available_cell_labels():
+        assert not board.is_full()
+        board.set_cell_contents(cell_label, mark_O)
+    assert board.is_full()
+

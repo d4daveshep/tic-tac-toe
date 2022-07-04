@@ -74,7 +74,7 @@ class Board:
                     cell_list.append(self.get_cell_label(i, j))
         return cell_list
 
-    def is_winner(self, mark):
+    def is_winner(self, mark: str) -> bool:
         all_lines = self.row_labels + self.col_labels + self.diag_labels
         for line in all_lines:
             if self.check_row_col_diag_have_same_mark(line, mark):
@@ -92,7 +92,7 @@ class Board:
 
     def display_board(self):
         # The function prints the board's current status to the console
-
+        print()
         draw_divider = "+-------+-------+-------+"
         draw_spacer = "|       |       |       |"
         for i in range(self.size):
@@ -103,3 +103,9 @@ class Board:
             print("|")
             print(draw_spacer)
         print(draw_divider)
+
+    def is_full(self):
+        if self.count_available_cells() > 0:
+            return False
+        else:
+            return True
