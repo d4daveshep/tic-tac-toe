@@ -68,10 +68,10 @@ class Board:
 
     def get_available_cell_labels(self) -> list:
         cell_list = []
-        for i in range(self.size):
-            for j in range(self.size):
-                if self.cells[i][j] == " ":
-                    cell_list.append(self.get_cell_label(i, j))
+        for row_num, row in enumerate(self.cells):
+            for col_num, cell in enumerate(row):
+                if cell == " ":
+                    cell_list.append(self.get_cell_label(row_num, col_num))
         return cell_list
 
     def is_winner(self, mark: str) -> bool:
