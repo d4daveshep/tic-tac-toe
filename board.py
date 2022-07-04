@@ -20,7 +20,6 @@ class Board:
         self.reset_to_empty()
 
         # create the dict for cell_labels
-        self.cell_labels = {}
 
         # create the lists of row, col and diag labels
         self.row_labels = []
@@ -37,7 +36,6 @@ class Board:
         for i in range(self.size):
             for j in range(self.size):
                 label = self.get_cell_label(i, j)
-                self.cell_labels[label] = (i, j)
                 self.row_labels[i].append(label)
                 self.col_labels[j].append(label)
 
@@ -47,21 +45,36 @@ class Board:
                     self.diag_labels[1].append(label)
 
     def reset_to_empty(self):
-        #  create the 2D cell grid using list comprehension to fill with space character
+        #  (re)create the 2D cell grid using list comprehension and fill with space character
         self.cells = [[" " for i in range(self.size)] for j in range(self.size)]
 
-    def get_cell_label(self, row: int, col: int) -> str:  # row, col are zero-based
-        return str((row * self.size) + (col + 1))
+    def get_cell_label(self, row_num: int, col_num: int) -> str:
+        """
+        Calculate the cell label from a row and column number
+        :param row_num: zero based row number
+        :param col_num: zero based column number
+        :return: cell label as a string
+        """
+        return str((row_num * self.size) + col_num + 1)
+
+    def get_row_col_numbers_for_label(self, label: str) -> (int, int):
+        # convert the label string to an int
+        int_label = int(label)
+
+        # do the reverse of the get_cell_label function
+        int_label -= 1
+        row_num = int_label // self.size
+        col_num = int_label % self.size
+
+        return row_num, col_num
 
     def get_cell_contents(self, label: str) -> str:
-        row = self.cell_labels[label][0]
-        col = self.cell_labels[label][1]
-        return self.cells[row][col]
+        row_num, col_num = self.get_row_col_numbers_for_label(label)
+        return self.cells[row_num][col_num]
 
     def set_cell_contents(self, label: str, mark: str):
-        row = self.cell_labels[label][0]
-        col = self.cell_labels[label][1]
-        self.cells[row][col] = mark
+        row_num, col_num = self.get_row_col_numbers_for_label(label)
+        self.cells[row_num][col_num] = mark
 
     # def count_available_cells(self):
     #     return self.size * self.size
@@ -100,7 +113,7 @@ class Board:
             print(draw_spacer)
             for j in range(self.size):
                 if self.cells[i][j] == " ":
-                    print("|   ", self.get_cell_label(i,j), "   ", sep="", end="")
+                    print("|   ", self.get_cell_label(i, j), "   ", sep="", end="")
                 else:
                     print("|   ", self.cells[i][j], "   ", sep="", end="")
             print("|")

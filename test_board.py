@@ -41,6 +41,9 @@ def test_label_to_cell_mapping():
     board.cells[1][1] = "X"
     assert "X" == board.get_cell_contents("5")
 
+    assert " " == board.get_cell_contents("8")
+    board.cells[2][1] = "O"
+    assert "O" == board.get_cell_contents("8")
 
 def test_cell_labels_are_correct():
     board = Board(3)

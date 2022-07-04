@@ -7,6 +7,7 @@ def get_available_cell_labels(cells: list) -> list:
     return cell_list
 
 
+
 # set up the 2D grid of cells using list comprehension
 size = 3
 # cells = [[1+(row*size + col) for col in range(size)] for row in range(size)] # calculate cell labels
